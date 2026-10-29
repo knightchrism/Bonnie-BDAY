@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Bonnie's Birthday Quest</title>
+<style>
+:root{--orange:#f28c28;--gold:#ffd166;--ink:#19151b;--cream:#fff8ed;--purple:#4b285f}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#7a3f93 0%,#3a1d4a 45%,#140f17 80%);overflow-x:hidden}
+.app{position:relative;z-index:2;max-width:480px;margin:auto;padding:22px 18px 40px}
+.top{text-align:center;font-size:44px;letter-spacing:5px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.card{background:rgba(255,248,237,.97);color:var(--ink);border-radius:30px;padding:25px 22px;margin-top:18px;box-shadow:0 16px 45px rgba(0,0,0,.35)}
+.hero{text-align:center;border:3px solid transparent;background:linear-gradient(#fff8ed,#fff8ed) padding-box,linear-gradient(135deg,#f28c28,#ffd166,#c77dff,#f28c28) border-box}
+.badge{display:inline-block;background:linear-gradient(90deg,#ffd166,#ffb347);color:#3a1d4a;padding:7px 12px;border-radius:999px;font-weight:800;font-size:13px;letter-spacing:.06em}
+h1{font-size:38px;line-height:1.05;margin:8px 0 6px;color:var(--purple)}
+h1 .name{display:block;font-size:48px;color:#b83b00;text-shadow:0 3px 0 #ffd166}
+h2{font-size:25px;color:var(--purple);margin:8px 0 10px}
+.subtitle{font-size:17px;line-height:1.5;color:#3d2c40}
+.clue{font-size:18px;line-height:1.55;background:#fff1d9;border-left:5px solid var(--orange);padding:16px;border-radius:14px;margin:18px 0;text-align:left}
+.mission{font-weight:800;font-size:17px;line-height:1.45}
+.progress{height:9px;background:#eadfd2;border-radius:99px;overflow:hidden;margin:14px 0}
+.bar{height:100%;background:linear-gradient(90deg,#f28c28,#e0457b);transition:width .3s}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:15px 16px;margin-top:13px;font-size:17px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#d9480f,#b83b00);color:#fff;text-align:center;text-decoration:none;box-shadow:0 6px 0 #7a2700}
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #7a2700}
+.btn.secondary{background:#eee1f2;color:var(--purple);box-shadow:none}
+.btn:focus-visible,input:focus-visible{outline:3px solid #ffd166;outline-offset:3px}
+input{width:100%;padding:14px;border:2px solid #d9c9b8;border-radius:12px;font-size:18px;text-transform:uppercase;letter-spacing:.1em;text-align:center}
+.hidden{display:none!important}
+.tiny{text-align:center;color:#6d596e;font-size:13px;margin-top:14px}
+.err{color:#b00020;font-weight:700;text-align:center;min-height:1.2em}
+.done{background:#e9f8ec;border-radius:14px;padding:14px;margin-top:16px;text-align:center;font-weight:700}
+.sky{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.balloon{position:absolute;bottom:-160px;width:58px;height:72px;border-radius:50% 50% 48% 48%;opacity:.85;animation:rise linear infinite}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:70px;background:rgba(255,255,255,.45)}
+@keyframes rise{to{transform:translateY(-125vh) rotate(-3deg)}}
+.confetti{position:absolute;top:-20px;width:9px;height:14px;opacity:.9;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.reset{background:none;border:0;color:#e2d2ea;font-size:12px;display:block;margin:24px auto 0;text-decoration:underline;cursor:pointer}
+.c{text-align:center}
+@media (min-width:700px){.app{max-width:560px}h1 .name{font-size:60px}}
+@media (prefers-reduced-motion:reduce){.top,.balloon,.confetti{animation:none!important}.sky{display:none}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<main class="app">
+  <div class="top" aria-hidden="true">🎃 🥳 🎃</div>
+  <section class="card hero">
+    <span class="badge">A VERY SPECIAL 75TH BIRTHDAY</span>
+    <h1>Bonnie's<span class="name">Birthday Quest</span></h1>
+    <p class="subtitle">A Halloween adventure filled with memories, laughs, a little mischief… and a very sweet finish.</p>
+  </section>
+  <section id="quest" class="card">
+    <span id="badge" class="badge"></span>
+    <h2 id="title"></h2>
+    <div class="progress"><div id="bar" class="bar"></div></div>
+    <div id="clue" class="clue"></div>
+    <div id="mission" class="mission"></div>
+    <p class="tiny">📸 Take your selfie and send it to your sister!</p>
+    <button id="complete" class="btn" type="button">📸 We Did It!</button>
+    <div id="after" class="hidden">
+      <div class="done">🎉 Mission complete!</div>
+      <a id="sms" class="btn" href="#">💬 Let her know I'm done!</a>
+      <a id="mail" class="btn secondary" href="#">✉️ Or send an email instead</a>
+      <div id="unlock">
+        <p class="subtitle">When your sister texts back the secret code, type it here to unlock the next clue:</p>
+        <input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Unlock code" placeholder="SECRET CODE">
+        <button id="go" class="btn" type="button">🔓 Unlock Next Clue</button>
+        <p id="err" class="err" role="alert"></p>
+      </div>
+      <button id="finish" class="btn hidden" type="button">🎂 See my birthday surprise</button>
+    </div>
+  </section>
+  <section id="final" class="card hidden">
+    <div class="c" style="font-size:50px">🎉🎃🍫🍦🎂</div>
+    <h1 class="c">QUEST COMPLETE!</h1>
+    <p class="subtitle c"><b>Happy 75th Birthday, Bonnie!</b></p>
+    <div class="clue">You laughed. You hunted. You made memories. And you completed your birthday adventure!</div>
+    <p class="subtitle c">The best part of this day isn't where you went — it's the memory you made of something you have never done before.</p>
+    <p class="c" style="font-size:22px">❤️ Love, your sister</p>
+  </section>
+  <button id="reset" class="reset" type="button">Start over</button>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
