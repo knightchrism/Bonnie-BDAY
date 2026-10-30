@@ -1,11 +1,9 @@
-# Bonnie's Birthday Quest 🎃🎂
+# Bonnie's Birthday Quest 🎂
 
-A tiny birthday scavenger hunt: one sister sends the other on four little quests.
+**Play it here:** https://knightchrism.github.io/Bonnie-BDAY/
 
-- Static `index.html` + `app.js` — no external scripts, fonts, trackers, or servers.
-- Quest 1 shows first. When Bonnie finishes a quest she taps **"Let her know I'm done!"**, which opens a prefilled text (or email) she sends to her sister.
-- Her sister replies with a secret code; entering it unlocks the next quest. Codes are stored only as SHA-256 hashes.
-- Progress is saved in the browser (localStorage). "Start over" resets it.
-- Strict Content-Security-Policy (`default-src 'self'`, `script-src 'self'`).
+A Halloween birthday adventure for Bonnie's 75th, with love from her sister Stacey.
 
-Hosted with GitHub Pages.
+How it works: Bonnie completes each quest, taps "Let her know I'm done!" to text Stacey, and Stacey texts back the secret code that unlocks the next step. Progress is saved on her phone.
+
+A simple static page: no accounts, no tracking, and no outside services.

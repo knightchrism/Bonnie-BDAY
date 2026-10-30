@@ -24,7 +24,6 @@ function render(){
   $("finish").classList.toggle("hidden",!last);
   var msg=encodeURIComponent("Bonnie finished Quest "+n+"!");
   $("sms").href="sms:+14438670601?&body="+msg;
-  $("mail").href="mailto:?subject="+msg+"&body="+msg;
   $("err").textContent="";$("code").value="";
 }
 async function sha(t){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}
