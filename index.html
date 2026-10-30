@@ -48,16 +48,24 @@ input{width:100%;padding:14px;border:2px solid #d9c9b8;border-radius:12px;font-s
 .pol figure:nth-child(odd){transform:rotate(-3deg)}.pol figure:nth-child(even){transform:rotate(3deg)}
 .pol img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px}
 .pol figcaption{font-size:20px;text-align:center;margin-top:4px}
+.ghost{position:relative;width:110px;margin:4px auto 10px;text-align:center}
+.ghost .g{font-size:72px;display:inline-block;animation:spin 3.2s ease-in-out infinite}
+.ghost .boo{position:absolute;top:-6px;right:-34px;background:#fff;color:#4a2560;font-weight:900;font-size:18px;padding:4px 10px;border-radius:14px;box-shadow:0 3px 8px rgba(0,0,0,.2);animation:pop 1.6s ease-in-out infinite}
+@keyframes spin{0%{transform:rotate(0) translateY(0)}25%{transform:rotate(-15deg) translateY(-8px)}50%{transform:rotate(360deg) translateY(0)}75%{transform:rotate(375deg) translateY(-8px)}100%{transform:rotate(360deg) translateY(0)}}
+@keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.25) rotate(8deg)}}
+@media (prefers-reduced-motion:reduce){.ghost .g,.ghost .boo{animation:none}}
 </style>
 </head>
 <body>
 <div class="sky" id="sky" aria-hidden="true"></div>
 <main class="app">
   <div class="top" aria-hidden="true">🎃 🥳 🎃</div>
-  <section class="card hero">
+  <section id="hero" class="card hero">
+    <div class="ghost" aria-hidden="true"><span class="g">👻</span><span class="boo">BOO!</span></div>
     <span class="badge">A VERY SPECIAL 75TH BIRTHDAY</span>
     <h1>Bonnie's<span class="name">Birthday Quest</span></h1>
     <p class="subtitle">A Halloween adventure filled with memories, laughs, a little mischief… and a very sweet finish.</p>
+    <button id="start" class="btn" type="button" style="margin-top:16px">🎉 Start Birthday Quest</button>
   </section>
   <section id="quest" class="card">
     <span id="badge" class="badge"></span>

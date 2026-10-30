@@ -12,6 +12,7 @@ var KEY="bonnieQuest.v1",st={q:0,done:false};
 try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s.q==="number")st=s}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 function render(){
+  var go=!!st.started;$("hero").classList.toggle("hidden",go);if(!go){$("quest").classList.add("hidden");$("final").classList.add("hidden");return}
   var last=false;
   $("unlock").classList.toggle("hidden",last);
   var fin=st.q>=stops.length;
@@ -27,6 +28,7 @@ function render(){
   $("err").textContent="";$("code").value="";
 }
 async function sha(t){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}
+$("start").addEventListener("click",function(){st.started=true;save();render();window.scrollTo(0,0)});
 $("complete").addEventListener("click",function(){st.done=true;save();render()});
 $("finish").addEventListener("click",function(){st.q=stops.length;st.done=false;save();render();window.scrollTo(0,0)});
 async function unlock(){
