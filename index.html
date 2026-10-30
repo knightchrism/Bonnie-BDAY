@@ -43,6 +43,11 @@ input{width:100%;padding:14px;border:2px solid #d9c9b8;border-radius:12px;font-s
 .c{text-align:center}
 @media (min-width:700px){.app{max-width:560px}h1 .name{font-size:60px}}
 @media (prefers-reduced-motion:reduce){.top,.balloon,.confetti{animation:none!important}.sky{display:none}}
+.pol{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:18px 0 8px}
+.pol figure{margin:0;background:#fff;padding:7px 7px 22px;border-radius:4px;box-shadow:0 6px 16px rgba(0,0,0,.18);width:44%;max-width:170px}
+.pol figure:nth-child(odd){transform:rotate(-3deg)}.pol figure:nth-child(even){transform:rotate(3deg)}
+.pol img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px}
+.pol figcaption{font-size:20px;text-align:center;margin-top:4px}
 </style>
 </head>
 <body>
@@ -60,14 +65,14 @@ input{width:100%;padding:14px;border:2px solid #d9c9b8;border-radius:12px;font-s
     <div class="progress"><div id="bar" class="bar"></div></div>
     <div id="clue" class="clue"></div>
     <div id="mission" class="mission"></div>
-    <p class="tiny">📸 Take your selfie and send it to your sister!</p>
+    <p class="tiny">📸 Take your selfie and send it to Stacey!</p>
     <button id="complete" class="btn" type="button">📸 We Did It!</button>
     <div id="after" class="hidden">
       <div class="done">🎉 Mission complete!</div>
       <a id="sms" class="btn" href="#">💬 Let her know I'm done!</a>
       <a id="mail" class="btn secondary" href="#">✉️ Or send an email instead</a>
       <div id="unlock">
-        <p class="subtitle">When your sister texts back the secret code, type it here to unlock the next clue:</p>
+        <p class="subtitle">When Stacey texts back the secret code, type it here to unlock the next clue:</p>
         <input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Unlock code" placeholder="SECRET CODE">
         <button id="go" class="btn" type="button">🔓 Unlock Next Clue</button>
         <p id="err" class="err" role="alert"></p>
@@ -81,7 +86,14 @@ input{width:100%;padding:14px;border:2px solid #d9c9b8;border-radius:12px;font-s
     <p class="subtitle c"><b>Happy 75th Birthday, Bonnie!</b></p>
     <div class="clue">You laughed. You hunted. You made memories. And you completed your birthday adventure!</div>
     <p class="subtitle c">The best part of this day isn't where you went — it's the memory you made of something you have never done before.</p>
-    <p class="c" style="font-size:22px">❤️ Love, your sister</p>
+    <div class="pol">
+      <figure><img src="photos/p1.jpg" alt="Family photo with Bonnie" loading="lazy"><figcaption>💛</figcaption></figure>
+      <figure><img src="photos/p2.jpg" alt="Bonnie and family at a wedding" loading="lazy"><figcaption>💕</figcaption></figure>
+      <figure><img src="photos/p3.jpg" alt="Bonnie and Stacey hugging" loading="lazy"><figcaption>🤗</figcaption></figure>
+      <figure><img src="photos/p4.jpg" alt="Bonnie on a rooftop" loading="lazy"><figcaption>🌅</figcaption></figure>
+    </div>
+    <p class="c" style="font-size:22px">❤️ Love, your sister Stacey</p>
+    <p class="c"><a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fknightchrism.github.io%2FBonnie-BDAY%2F" target="_blank" rel="noopener">📣 Share my birthday quest on Facebook</a></p>
   </section>
   <button id="reset" class="reset" type="button">Start over</button>
 </main>

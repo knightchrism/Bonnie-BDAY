@@ -7,12 +7,12 @@ var stops=[
  {badge:"QUEST 3 • BIRTHDAY MEAL",title:"Twisted Lobster",clue:"You've laughed, you've hunted, and you've made it this far. Now it's time to sit down, relax and enjoy.",mission:"🥂 Have a birthday toast together. Have the waitress take a picture to celebrate 75 years of Bonnie!"},
  {badge:"QUEST 4 • SWEET FINISH",title:"Your Final Stop",clue:"You've earned something SWEET. Your choice of what and where you get dessert.",mission:"🍦 Go to your final dessert destination, choose something delicious, and take one last birthday selfie!"}
 ];
-var hashes=["e6e3b4796d13f4542bca9178a5929a9b3a1225275e693da89fa98ff7adc8fb00","84e209e71a576fc461726216c94f0d0539fbf2c0063d0953c29148db30d75fba","32ed370f80e11ab2a49ce16c112c3ddedc3de5ec6f9daebb611cf80c6ceb462f"];
+var hashes=["e6e3b4796d13f4542bca9178a5929a9b3a1225275e693da89fa98ff7adc8fb00","84e209e71a576fc461726216c94f0d0539fbf2c0063d0953c29148db30d75fba","32ed370f80e11ab2a49ce16c112c3ddedc3de5ec6f9daebb611cf80c6ceb462f","cc32b3b096fb97b18e65c873f8b04d94eb8776cdb95a3d8c373c7ebc51249918"];
 var KEY="bonnieQuest.v1",st={q:0,done:false};
 try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s.q==="number")st=s}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 function render(){
-  var last=st.q===stops.length-1;
+  var last=false;
   $("unlock").classList.toggle("hidden",last);
   var fin=st.q>=stops.length;
   $("quest").classList.toggle("hidden",fin);$("final").classList.toggle("hidden",!fin);
@@ -23,7 +23,7 @@ function render(){
   $("complete").classList.toggle("hidden",st.done);$("after").classList.toggle("hidden",!st.done);
   $("finish").classList.toggle("hidden",!last);
   var msg=encodeURIComponent("Bonnie finished Quest "+n+"!");
-  $("sms").href="sms:?&body="+msg;
+  $("sms").href="sms:+14438670601?&body="+msg;
   $("mail").href="mailto:?subject="+msg+"&body="+msg;
   $("err").textContent="";$("code").value="";
 }
